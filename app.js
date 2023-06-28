@@ -43,8 +43,9 @@ app.delete("/api/movies/:id", movieHandlers.deleteMovie);
 app.put(
   "/api/users/:id",
   (req, res, next) => {
+    console.log(typeof req.params.id);
     // Vérifier si l'ID correspond à celui du payload du token
-    if (req.params.id !== req.payload.sub) {
+    if (parseInt(req.params.id) !== req.payload.sub) {
       return res.status(403).send("Forbidden");
     }
     // Si les IDs correspondent, passer à la logique de traitement
@@ -58,7 +59,7 @@ app.delete(
   "/api/users/:id",
   (req, res, next) => {
     // Vérifier si l'ID correspond à celui du payload du token
-    if (req.params.id !== req.payload.sub) {
+    if (parseInt(req.params.id) !== req.payload.sub) {
       return res.status(403).send("Forbidden");
     }
     // Si les IDs correspondent, passer à la logique de traitement
